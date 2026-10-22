@@ -53,6 +53,7 @@ if old not in s:
     raise SystemExit("difficulty_3 anchor missing")
 p.write_text(s.replace(old, new))
 PY
+    python3 /solution/fix3_lattice.py
 }
 
 for d in difficulty_1 difficulty_2 difficulty_3; do

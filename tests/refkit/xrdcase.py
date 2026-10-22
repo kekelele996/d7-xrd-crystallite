@@ -87,10 +87,14 @@ def write_case(path, spec):
     u, v, w = spec["instrument"]
     delta = float(spec["delta"])
     counts = float(spec.get("counts", 100000))
+    disp = float(spec.get("displacement_mm", 0.0))
     for h, k, l, n, tt in reflections(a):
         tt1 = tt + delta
         tt2 = tt_of(KA2, d_of(a, (h, k, l))) + delta
         theta = math.radians(tt1 / 2.0)
+        shift = math.degrees(-2.0 * disp * math.cos(theta) / 240.0)
+        tt1 += shift
+        tt2 += shift
         beta = (0.9 * KA1 * 1e-10 / (size * 1e-9 * math.cos(theta))
                 + 4.0 * (strain / 100.0) * math.tan(theta)
                 + beta_of_fwhm(caglioti(u, v, w, tt1)))
@@ -166,6 +170,7 @@ CASES = {
         "strain_pct": 0.10,
         "instrument": (0.0, 0.0, 0.0064),
         "delta": 0.12,
+        "displacement_mm": 0.8,
         "seed": 303,
     },
 }
