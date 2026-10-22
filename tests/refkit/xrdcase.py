@@ -100,13 +100,13 @@ def write_case(path, spec):
     y = rng.poisson(np.maximum(y, 0.1)).astype(int)
 
     with open(path / "sample.csv", "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, lineterminator="\n")
         writer.writerow(["two_theta_deg", "counts"])
         for xx, yy in zip(x, y):
             writer.writerow([f"{xx:.3f}", int(yy)])
 
     with open(path / "instrument.csv", "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, lineterminator="\n")
         writer.writerow(["h", "k", "l", "two_theta_deg", "fwhm_deg"])
         for (h, k, l), tt, fwhm in instrument_table(u, v, w, delta):
             writer.writerow([h, k, l, f"{tt:.4f}", f"{fwhm:.5f}"])
