@@ -4,7 +4,7 @@
   "wavelength_ka1_angstrom": 1.540598,
   "wavelength_ka2_angstrom": 1.544426,
   "ka2_intensity_ratio": 0.5,
-  "lattice_std_angstrom": 4.15692,
+  "lattice_std_angstrom": 4.156826,
   "two_theta_zero_deg": 0.0,
   "scherrer_k": 0.9,
   "two_theta_step_deg": 0.005

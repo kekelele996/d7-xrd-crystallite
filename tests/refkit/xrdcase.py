@@ -14,7 +14,7 @@ import numpy as np
 KA1 = 1.540598
 KA2 = 1.544426
 KA2_RATIO = 0.5
-A_STD = 4.15692
+A_STD = 4.156826
 A0 = 5.411
 
 
@@ -27,14 +27,14 @@ def tt_of(lam, d):
     return 2.0 * math.degrees(math.asin(lam / (2.0 * d)))
 
 
-def reflections(a, lo=20.5, hi=109.5):
+def reflections(a, lo=20.5, hi=109.5, centred=True):
     seen = {}
     for h in range(0, 9):
         for k in range(0, 9):
             for l in range(0, 9):
                 if h == k == l == 0:
                     continue
-                if not (h % 2 == k % 2 == l % 2):
+                if centred and not (h % 2 == k % 2 == l % 2):
                     continue
                 n = h * h + k * k + l * l
                 d = a / math.sqrt(n)
@@ -69,7 +69,7 @@ def lorentz(x, x0, fwhm):
 
 def instrument_table(u, v, w, delta):
     rows = []
-    for h, k, l, n, tt in reflections(A_STD):
+    for h, k, l, n, tt in reflections(A_STD, centred=False):
         x = tt + delta
         rows.append(((h, k, l), x, caglioti(u, v, w, x)))
     return rows
