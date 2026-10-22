@@ -28,7 +28,7 @@ CANDIDATE_ENV = {
     "LANG": "C.UTF-8",
     "TZ": "UTC",
 }
-CALL_TIMEOUT_SEC = 90
+CALL_TIMEOUT_SEC = 20
 
 
 def run_candidate(args, timeout=CALL_TIMEOUT_SEC):
